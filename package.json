@@ -1,0 +1,15 @@
+{
+  "name": "ishtar-bot",
+  "version": "1.0.0",
+  "description": "A bot used to remind, check user info, gives you a random waifu and other discord admin functions",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "eslint-plugin-graphql": "^4.0.0",
+    "graphql": "^15.4.0"
+  }
+}
