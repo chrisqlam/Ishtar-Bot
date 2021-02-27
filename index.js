@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
-const { prefix, BOT_TOKEN } = require('./config.json');
+//const { prefix, BOT_TOKEN } = require('./config.json');
 const fs = require('fs');
+const prefix = "!";
 
 
 // create a new Discord Client
