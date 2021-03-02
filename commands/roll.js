@@ -7,14 +7,14 @@ module.exports = {
 	usage: '',
 	cooldown: 5,
 	execute: async (message) => {
-		const randomPage = Math.floor((Math.random() * 306) + 1);
+		//const randomPage = Math.floor((Math.random() * 306) + 1);
 		const variables = {
-			page: randomPage,
+			page: 1,
 		};
 		const query = `
         query ($page: Int) {
-			Page(page: $page) {
-			  media {
+			Page(page: $page, perPage: 500) {
+			  media (status: RELEASING, type: ANIME) {
 				type
 				title {
 				  userPreferred
