@@ -8,7 +8,7 @@ module.exports = {
 	cooldown: 5,
 	execute: async (message) => {
 		const query = `
-        query ($page: Int) {
+        query {
 			Page(page: 1, perPage: 50) {
 			  media (status: RELEASING, type: ANIME, format: TV) {
 				type
@@ -47,35 +47,37 @@ module.exports = {
 		fetch(url, options)
 			.then(resolve => resolve.json())
 			.then(json => {
-				const randomElementArray = Math.floor((Math.random() * json.data.Page.media.length) + 1);
-				const randomCharacterArray = Math.floor((Math.random() * randomElement.characters.edges.length) + 1)
-				const randomElement = json.data.Page.media[randomElementArray];
-				const randomCharacter = randomElement.characters.edges[randomCharacterArray];
+				do {
+					var characterExists = false
+					const randomElementArray = Math.floor((Math.random() * json.data.Page.media.length) + 1);
+					const randomElement = json.data.Page.media[randomElementArray];
+					const randomCharacterArray = Math.floor((Math.random() * randomElement.characters.edges.length))
+					const randomCharacter = randomElement.characters.edges[randomCharacterArray];
 
-				console.log(randomElement.title.userPreferred);
-				console.log (randomElementArray);
-				console.log(randomCharacterArray);
+					if (randomCharacter != null) {
+						characterExists = true
+						console.log(randomElement.title.userPreferred);
+						console.log(randomElementArray);
+						console.log(randomCharacterArray);
+						console.log(randomElement.characters.edges.length);
+						const waifuInfoEmbed = new Discord.MessageEmbed()
+							.setColor('RANDOM')
+							.setTitle(randomElement.title.userPreferred)
+							.addFields(
+								{ name: 'Name', value: randomCharacter.node.name.full },
+							)
+							.setImage(randomCharacter.node.image.large)
+							.setFooter(`Requested by ${message.author.username}`);
+						message.channel.send(`${message.author}, your anime lover is`)
+							.then(message.channel.send(waifuInfoEmbed))
+							.catch(error => {
+								message.channel.send(error);
+							});
+					} else {
+						characterExists = false
+					}
+				} while (characterExists === false)
 
-				if (randomCharacter != null) {
-					console.log('character exists');
-				} else {
-					console.log('character does not exist');
-				}
-
-
-				const waifuInfoEmbed = new Discord.MessageEmbed()
-					.setColor('RANDOM')
-					.setTitle(randomElement.title.userPreferred)
-					.addFields(
-						{ name: 'Name', value:  randomCharacter.node.name.full },
-					)
-					.setImage(randomCharacter.node.image.large)
-					.setFooter(`Requested by ${message.author.username}`);
-				message.channel.send(`${message.author}, your anime lover is`)
-					.then(message.channel.send(waifuInfoEmbed))
-					.catch(error => {
-						message.channel.send(error);
-					});
 			});
 
 	},

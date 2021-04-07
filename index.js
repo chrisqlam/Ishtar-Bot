@@ -63,4 +63,4 @@ client.on('message', async message => {
 
 
 // login to discord with this token
-client.login(process.env.BOT_TOKEN);
+client.login('process.env.BOT_TOKEN');
