@@ -7,13 +7,9 @@ module.exports = {
 	usage: '',
 	cooldown: 5,
 	execute: async (message) => {
-		//const randomPage = Math.floor((Math.random() * 306) + 1);
-		const variables = {
-			page: 1,
-		};
 		const query = `
         query ($page: Int) {
-			Page(page: $page, perPage: 50) {
+			Page(page: 1, perPage: 50) {
 			  media (status: RELEASING, type: ANIME, format: TV) {
 				type
 				title {
@@ -46,17 +42,16 @@ module.exports = {
 				},
 				body: JSON.stringify({
 					query: query,
-					variables: variables,
 				}),
 			};
 		fetch(url, options)
 			.then(resolve => resolve.json())
 			.then(json => {
-				const randomElementArray = Math.floor((Math.random() * json.data.Page.media.length) - 1);
+				const randomElementArray = Math.floor((Math.random() * json.data.Page.media.length) + 1);
 				const randomCharacterArray = Math.floor((Math.random() * randomElement.characters.edges.length) + 1)
 				const randomElement = json.data.Page.media[randomElementArray];
 				const randomCharacter = randomElement.characters.edges[randomCharacterArray];
-				
+
 				console.log(randomElement.title.userPreferred);
 				console.log (randomElementArray);
 				console.log(randomCharacterArray);
