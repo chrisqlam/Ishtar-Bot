@@ -53,14 +53,18 @@ module.exports = {
 			.then(resolve => resolve.json())
 			.then(json => {
 				const randomElementArray = Math.floor((Math.random() * json.data.Page.media.length) - 1);
+				const randomCharacterArray = Math.floor((Math.random() * randomElement.characters.edges.length) + 1)
 				const randomElement = json.data.Page.media[randomElementArray];
-				const randomCharacter = randomElement.characters.edges[Math.floor((Math.random() * randomElement.characters.edges.length) + 1)];
+				const randomCharacter = randomElement.characters.edges[randomCharacterArray];
+				
 				console.log(randomElement.title.userPreferred);
 				console.log (randomElementArray);
+				console.log(randomCharacterArray);
+
 				if (randomCharacter != null) {
-					console.log('character exists')
+					console.log('character exists');
 				} else {
-					console.log('character does not exist')
+					console.log('character does not exist');
 				}
 
 
