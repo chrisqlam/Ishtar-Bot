@@ -47,8 +47,8 @@ module.exports = {
 		fetch(url, options)
 			.then(resolve => resolve.json())
 			.then(json => {
+				var characterExists = false
 				do {
-					var characterExists = false
 					const randomElementArray = Math.floor((Math.random() * json.data.Page.media.length) + 1);
 					const randomElement = json.data.Page.media[randomElementArray];
 					const randomCharacterArray = Math.floor((Math.random() * randomElement.characters.edges.length))
