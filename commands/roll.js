@@ -55,7 +55,13 @@ module.exports = {
 				const randomElementArray = Math.floor((Math.random() * json.data.Page.media.length) - 1);
 				const randomElement = json.data.Page.media[randomElementArray];
 				const randomCharacter = randomElement.characters.edges[Math.floor((Math.random() * randomElement.characters.edges.length) + 1)];
-				console.log (randomElementArray)
+				console.log(randomElement.title.userPreferred);
+				console.log (randomElementArray);
+				if (randomCharacter != null) {
+					console.log('character exists')
+				} else {
+					console.log('character does not exist')
+				}
 
 
 				const waifuInfoEmbed = new Discord.MessageEmbed()
