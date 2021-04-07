@@ -13,8 +13,8 @@ module.exports = {
 		};
 		const query = `
         query ($page: Int) {
-			Page(page: $page, perPage: 500) {
-			  media (status: RELEASING, type: ANIME) {
+			Page(page: $page, perPage: 50) {
+			  media (status: RELEASING, type: ANIME, format: TV) {
 				type
 				title {
 				  userPreferred
