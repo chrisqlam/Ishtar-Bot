@@ -54,7 +54,7 @@ module.exports = {
 					const randomCharacterArray = Math.floor((Math.random() * randomElement.characters.edges.length))
 					const randomCharacter = randomElement.characters.edges[randomCharacterArray];
 
-					if (randomCharacter != null) {
+					if (randomCharacter != undefined) {
 						characterExists = true
 						console.log(randomElement.title.userPreferred);
 						console.log(randomElementArray);
