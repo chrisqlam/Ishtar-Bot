@@ -52,7 +52,7 @@ module.exports = {
 		fetch(url, options)
 			.then(resolve => resolve.json())
 			.then(json => {
-				const randomElement = json.data.Page.media[Math.floor(Math.random() * json.data.Page.media.length)];
+				const randomElement = json.data.Page.media[Math.floor((Math.random() * json.data.Page.media.length) - 1)];
 				const randomCharacter = randomElement.characters.edges[Math.floor((Math.random() * randomElement.characters.edges.length) + 1)];
 				console.log(randomElement);
 				console.log(randomElement.title.userPreferred);
