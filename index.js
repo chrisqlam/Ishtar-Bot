@@ -51,7 +51,7 @@ client.on('message', async message => {
 
 	// try to run a command if found, if an error occurs, output error in a log to console and let's the user know
 	try {
-		command.execute(message, args);
+		command.execute(message, client, args);
 	}
 	catch (error) {
 		console.error(error);
